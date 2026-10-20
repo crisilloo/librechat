@@ -839,6 +839,7 @@ const createAgentHandler = async (req, res) => {
       previous: undefined,
       next: agentData.instructionsPrompt,
       filters: req.config?.filters,
+      linkedInstructions: req.config?.endpoints?.agents?.linkedInstructions,
       logger,
       req,
     });
@@ -1244,6 +1245,7 @@ const updateAgentHandler = async (req, res) => {
       previous: existingAgent.instructionsPrompt,
       next: instructionsPromptField,
       filters: req.config?.filters,
+      linkedInstructions: req.config?.endpoints?.agents?.linkedInstructions,
       logger,
       req,
     });
