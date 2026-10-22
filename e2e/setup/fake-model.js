@@ -2144,7 +2144,7 @@ function subagentResultResponses(text) {
       }
 
       return {
-        response: '',
+        response: marker.label === 'oauth-reconnect' ? 'Checking specialist access.' : '',
         toolCalls: [
           {
             id: `call_e2e_subagent_${marker.label}`,
