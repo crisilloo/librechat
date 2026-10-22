@@ -674,6 +674,7 @@ describe('MistralOCR Service', () => {
         path: '/tmp/upload/file.pdf',
         originalname: 'document.pdf',
         mimetype: 'application/pdf',
+        size: 4096,
       } as Express.Multer.File;
 
       const result = await uploadMistralOCR({
@@ -695,7 +696,7 @@ describe('MistralOCR Service', () => {
       // Verify OCR result
       expect(result).toEqual({
         filename: 'document.pdf',
-        bytes: expect.any(Number),
+        bytes: 4096,
         filepath: 'mistral_ocr',
         text: expect.stringContaining('# PAGE 1'),
         images: ['base64image1', 'base64image2'],
@@ -776,6 +777,7 @@ describe('MistralOCR Service', () => {
         path: '/tmp/upload/image.png',
         originalname: 'image.png',
         mimetype: 'image/png',
+        size: 2048,
       } as Express.Multer.File;
 
       const result = await uploadMistralOCR({
@@ -808,7 +810,7 @@ describe('MistralOCR Service', () => {
 
       expect(result).toEqual({
         filename: 'image.png',
-        bytes: expect.any(Number),
+        bytes: 2048,
         filepath: 'mistral_ocr',
         text: expect.stringContaining('Image OCR result'),
         images: ['imgbase64'],
@@ -1923,6 +1925,7 @@ describe('MistralOCR Service', () => {
           path: '/tmp/upload/file.pdf',
           originalname: 'document.pdf',
           mimetype: 'application/pdf',
+          size: 4096,
         } as Express.Multer.File;
 
         // Should not throw even if delete fails
@@ -1934,7 +1937,7 @@ describe('MistralOCR Service', () => {
 
         expect(result).toEqual({
           filename: 'document.pdf',
-          bytes: expect.any(Number),
+          bytes: 4096,
           filepath: 'mistral_ocr',
           text: 'OCR content\n\n',
           images: [],
@@ -2519,6 +2522,7 @@ describe('MistralOCR Service', () => {
         path: '/tmp/upload/azure-file.pdf',
         originalname: 'azure-document.pdf',
         mimetype: 'application/pdf',
+        size: 4096,
       } as Express.Multer.File;
 
       const result = await uploadAzureMistralOCR({
@@ -2528,7 +2532,7 @@ describe('MistralOCR Service', () => {
       });
 
       expect(readFileAsBuffer).toHaveBeenCalledWith('/tmp/upload/azure-file.pdf', {
-        fileSize: undefined,
+        fileSize: 4096,
       });
 
       // Verify OCR was called with base64 data URL
@@ -2545,7 +2549,7 @@ describe('MistralOCR Service', () => {
 
       expect(result).toEqual({
         filename: 'azure-document.pdf',
-        bytes: expect.any(Number),
+        bytes: 4096,
         filepath: 'azure_mistral_ocr',
         text: 'Azure OCR content\n\n',
         images: ['azure-base64'],
