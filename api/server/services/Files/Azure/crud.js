@@ -118,9 +118,8 @@ async function getAzureURL({ fileName, basePath = defaultBasePath, userId, conta
 /**
  * Deletes a blob from Azure Blob Storage.
  *
- * @param {Object} params
- * @param {ServerRequest} params.req - The Express request object.
- * @param {MongoFile} params.file - The file object.
+ * @param {ServerRequest} req - The Express request object.
+ * @param {MongoFile} file - The file object.
  */
 const deleteFileFromAzure = (req, file) =>
   createOwnedBlobFileDeleter({
